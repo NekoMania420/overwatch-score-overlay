@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit');
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Futura No2 D', 'Kanit', sans-serif;
+}
+
+fieldset {
+  border: 1px solid white;
+}
+
+.container {
+  display: flex;
+  user-select: none;
+  position: relative;
+}
+
+.team {
+  background-color: black;
+  color: #eee;
+  font-size: 1.5vw;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  line-height: 2.5vw;
+}
+
+.team.left {
+  background-color: #40bbe7;
+  padding-left: 10px;
+}
+
+.team.left > .name {
+  text-align: right;
+}
+
+.team.left > .group {
+  margin-left: 1vw;
+}
+
+.team.left > .score {
+  border-right: 0.3vw solid #eee;
+}
+
+.team.right {
+  background-color: #df0d28;
+  padding-right: 10px;
+  flex-direction: row-reverse;
+}
+
+.team.right > .group {
+  margin-right: 1vw;
+}
+
+.team.right > .score {
+  border-left: 0.3vw solid #eee;
+}
+
+.team > .name {
+  flex: 1;
+  font-size: 1em;
+}
+
+.team > .score {
+  flex: 0 0 4vw;
+  text-align: center;
+}
+
+.team > .faction {
+  font-size: 1em;
+  padding: 0 1vw;
+  text-align: center;
+  background-color: #444;
+  color: #eee;
+}
+
+.team > .faction.hide {
+  display: none;
+}
+
+.team > .group {
+  font-size: 1em;
+  padding: 0 1vw;
+  background-color: rgba(0,0,0,0.25);
+}
+
+.spacer {
+  flex: 0 0 25%;
+}
+
+.controller {
+  position: relative;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 2vw;
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.controller button {
+  font-size: inherit;
+  line-height: 2.5;
+}
+
+.controller input[type=text],
+.controller input[type=number] {
+  font-size: inherit;
+}
+
+label {
+  user-select: none;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  width: 2vw;
+  height: 2vw;
+  vertical-align: middle;
+}
+
+.edit > *:not(legend):not(.options):not(.url) {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hide {
+  display: none;
+}
+
+.about {
+  font-family: monospace;
+  text-align: right;
+  font-size: 60%;
+  padding: 0.5vw 0;
+}
+
+#generatedUrl {
+  font-size: 70%;
+  font-family: inherit;
+  width: 100%;
+}
+
+#reloadBtn {
+  line-height: initial;
+}
+
+.url > .alert {
+  display: none;
+  color: #fbff00;
+}
+
+.url > .alert.show {
+  display: inline;
+}

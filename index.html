@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Overwatch Score Overlay</title>
+  <link rel="stylesheet" href="score-overlay.css">
+</head>
+<body>
+  <div class="controller">
+    <form id="edit">
+      <fieldset class="edit">
+        <legend>Edit:</legend>
+        <div class="options">
+          <label><input type="checkbox" id="control"> Control map</label>
+          <label><input type="checkbox" id="hideGroup"> Hide group</label>
+          <button type="button" id="reloadBtn">↻ Reload</button>
+        </div>
+        <fieldset>
+          <legend>Left team:</legend>
+          <div>Name: <input type="text" name="leftTeamName" data-target="#leftTeamName"></div>
+          <div>Group: <input type="text" name="leftTeamGroup" data-target="#leftTeamGroup"></div>
+          <div>Score: <input type="number" name="leftTeamScore" min="0" value="0" data-target="#leftTeamScore"></div>
+          <div><label><input type="radio" name="attack" value="left" checked> Attack</label></div>
+        </fieldset>
+        <div>
+          <button type="button" id="swapBtn">⇄</button>
+        </div>
+        <fieldset>
+          <legend>Right team:</legend>
+          <div>Name: <input type="text" name="rightTeamName" data-target="#rightTeamName"></div>
+          <div>Group: <input type="text" name="rightTeamGroup" data-target="#rightTeamGroup"></div>
+          <div>Score: <input type="number" name="rightTeamScore" min="0" value="0" data-target="#rightTeamScore"></div>
+          <div><label><input type="radio" name="attack" value="right"> Attack</label></div>
+        </fieldset>
+        <div>
+          <button id="updateBtn">UPDATE</button>
+        </div>
+        <div class="url">
+          Generated URL (Click to copy): <span class="alert">COPIED</span><input type="text" id="generatedUrl" readonly>
+        </div>
+      </fieldset>
+    </form>
+    <div class="about">
+      Overwatch Score Overlay V1.1.1<br>By NekoMania420
+    </div>
+  </div>
+  <div class="container">
+    <div class="team left">
+      <div class="name" id="leftTeamName"></div>
+      <div class="group" id="leftTeamGroup"></div>
+      <div class="score" id="leftTeamScore"></div>
+      <div class="faction" id="leftTeamFaction">Attack</div>
+    </div>
+    <div class="spacer"></div>
+    <div class="team right">
+      <div class="name" id="rightTeamName"></div>
+      <div class="group" id="rightTeamGroup"></div>
+      <div class="score" id="rightTeamScore"></div>
+      <div class="faction" id="rightTeamFaction">Defend</div>
+    </div>
+  </div>
+
+  <script src="score-overlay.js"></script>
+</body>
+</html>
