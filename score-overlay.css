@@ -29,69 +29,94 @@ fieldset {
 }
 
 .team {
-  background-color: black;
   color: #eee;
   font-size: 1.5vw;
   flex: 1;
   display: flex;
-  align-items: center;
   line-height: 2.5vw;
 }
 
-.team.left {
+.team > div:first-child {
+  display: flex;
+  flex: 1;
+  z-index: 1;
+}
+
+.team.left > div:first-child {
   background-color: #40bbe7;
   padding-left: 1vw;
 }
 
-.team.left > .name {
+.team.left > div:first-child > .name {
   text-align: right;
+  padding-right: 1vw;
 }
 
-.team.left > .group {
-  margin-left: 1vw;
+.team.left > div:first-child > .score {
+  color: #40bbe7;
+  border-right: 0.3vw solid #40bbe7;
 }
 
-.team.left > .score {
-  border-right: 0.3vw solid #eee;
+.team.left > .faction.play {
+  animation: left-slide-out 0.25s, left-slide-in 0.25s 0.25s;
+}
+
+.team.left > .faction.hide {
+  transform: translateX(-100%);
 }
 
 .team.right {
+  flex-direction: row-reverse;
+}
+
+.team.right > div:first-child {
   background-color: #df0d28;
   padding-right: 1vw;
   flex-direction: row-reverse;
 }
 
-.team.right > .group {
-  margin-right: 1vw;
+.team.right > div:first-child > .name {
+  padding-left: 1vw;
 }
 
-.team.right > .score {
-  border-left: 0.3vw solid #eee;
+.team.right > div:first-child > .score {
+  color: #df0d28;
+  border-left: 0.3vw solid #df0d28;
 }
 
-.team > .name {
+.team.right > .faction.play {
+  animation: right-slide-out 0.25s, right-slide-in 0.25s 0.25s;
+}
+
+.team.right > .faction.hide {
+  transform: translateX(100%);
+}
+
+.team > div:first-child > .name {
   flex: 1;
 }
 
-.team > .score {
+.team > div:first-child > .score {
+  background-color: #eee;
   flex: 0 0 3.25vw;
   text-align: center;
 }
 
 .team > .faction {
-  padding: 0 1vw;
+  flex: 0 0 4vw;
   text-align: center;
   background-color: #444;
   color: #eee;
+  transition: transform 0.5s;
 }
 
-.team > .faction.hide {
-  display: none;
-}
-
-.team > .group {
+.team > div:first-child > .group {
   padding: 0 1vw;
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0,0,0,0.5);
+}
+
+.team > div:first-child > .group.hide {
+  display: none;
 }
 
 .spacer {
@@ -100,23 +125,24 @@ fieldset {
 
 .info {
   display: flex;
-  align-self: center;
   line-height: 2.5vw;
-  flex-basis: 28%;
+  flex: 0 0 21%;
   font-size: 1.5vw;
-  visibility: hidden;
+  transform: translateY(-100%);
+  transition: transform 0.5s;
 }
 
 .info.show {
-  visibility: visible;
+  transform: translateY(0);
 }
 
 .info > .text {
   background-color: #222;
   color: #eee;
-  flex-basis: 75%;
+  flex: 0 0 75%;
   text-align: center;
   padding: 0 1vw;
+  white-space: nowrap;
 }
 
 .controller {
@@ -128,6 +154,7 @@ fieldset {
   font-size: 2vw;
   height: 50vh;
   overflow-y: auto;
+  z-index: 9999;
 }
 
 .controller button {
@@ -165,10 +192,6 @@ input[type=radio] {
   margin: 1vw 0;
 }
 
-.hide {
-  display: none;
-}
-
 .about {
   font-family: monospace;
   text-align: right;
@@ -193,4 +216,24 @@ input[type=radio] {
 
 .url > .alert.show {
   display: inline;
+}
+
+@keyframes left-slide-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes left-slide-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes right-slide-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes right-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }

@@ -8,10 +8,10 @@
   // Control map
   const controlMapCheckbox = document.querySelector('#control')
   controlMapCheckbox.addEventListener('change', e => {
-    if (e.target.checked) {
-      document.querySelector('#leftTeamFaction').innerText = 'CTP'
-      document.querySelector('#rightTeamFaction').innerText = 'CTP'
-    } else {
+    document.querySelector('#leftTeamFaction').classList.toggle('hide', e.target.checked)
+    document.querySelector('#rightTeamFaction').classList.toggle('hide', e.target.checked)
+
+    if (!e.target.checked) {
       editForm.dispatchEvent(submitEvent)
     }
 
@@ -41,6 +41,7 @@
 
   // Update
   const editForm = document.querySelector('#edit')
+  let leftFaction, rightFaction
   editForm.addEventListener('submit', e => {
     e.preventDefault()
 
@@ -50,18 +51,45 @@
     })
 
     const attack = document.querySelector('[name="attack"]:checked').value
+    const leftTeamFaction = document.querySelector('#leftTeamFaction')
+    const rightTeamFaction = document.querySelector('#rightTeamFaction')
     if (!controlMapCheckbox.checked) {
       if (attack === 'left') {
-        document.querySelector('#leftTeamFaction').innerText = 'Attack'
-        document.querySelector('#rightTeamFaction').innerText = 'Defend'
+        leftFaction = 'ATK'
+        rightFaction = 'DEF'
       } else {
-        document.querySelector('#leftTeamFaction').innerText = 'Defend'
-        document.querySelector('#rightTeamFaction').innerText = 'Attack'
+        leftFaction = 'DEF'
+        rightFaction = 'ATK'
+      }
+
+      if (leftTeamFaction.innerText !== leftFaction) {
+        document.querySelector('#leftTeamFaction').classList.add('play')
+      }
+
+      if (rightTeamFaction.innerText !== rightFaction) {
+        document.querySelector('#rightTeamFaction').classList.add('play')
       }
     }
 
     document.dispatchEvent(generateEvent)
   }, false)
+
+  // Faction change animation
+  document.querySelector('#leftTeamFaction').addEventListener('animationend', e => {
+    if (e.animationName === 'left-slide-out') {
+      e.target.innerText = leftFaction
+    } else {
+      e.target.classList.remove('play')
+    }
+  })
+
+  document.querySelector('#rightTeamFaction').addEventListener('animationend', e => {
+    if (e.animationName === 'right-slide-out') {
+      e.target.innerText = rightFaction
+    } else {
+      e.target.classList.remove('play')
+    }
+  })
 
   // Swap team
   const swapBtn = document.querySelector('#swapBtn')
