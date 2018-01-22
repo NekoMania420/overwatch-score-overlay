@@ -40,7 +40,7 @@ fieldset {
 
 .team.left {
   background-color: #40bbe7;
-  padding-left: 10px;
+  padding-left: 1vw;
 }
 
 .team.left > .name {
@@ -57,7 +57,7 @@ fieldset {
 
 .team.right {
   background-color: #df0d28;
-  padding-right: 10px;
+  padding-right: 1vw;
   flex-direction: row-reverse;
 }
 
@@ -71,16 +71,14 @@ fieldset {
 
 .team > .name {
   flex: 1;
-  font-size: 1em;
 }
 
 .team > .score {
-  flex: 0 0 4vw;
+  flex: 0 0 3.25vw;
   text-align: center;
 }
 
 .team > .faction {
-  font-size: 1em;
   padding: 0 1vw;
   text-align: center;
   background-color: #444;
@@ -92,13 +90,33 @@ fieldset {
 }
 
 .team > .group {
-  font-size: 1em;
   padding: 0 1vw;
   background-color: rgba(0,0,0,0.25);
 }
 
 .spacer {
-  flex: 0 0 25%;
+  flex: 1;
+}
+
+.info {
+  display: flex;
+  align-self: center;
+  line-height: 2.5vw;
+  flex-basis: 25%;
+  font-size: 1.5vw;
+  visibility: hidden;
+}
+
+.info.show {
+  visibility: visible;
+}
+
+.info > .text {
+  background-color: #222;
+  color: #eee;
+  flex-basis: 75%;
+  text-align: center;
+  padding: 0 1vw;
 }
 
 .controller {
@@ -114,12 +132,14 @@ fieldset {
 
 .controller button {
   font-size: inherit;
+  font-family: inherit;
   line-height: 2.5;
 }
 
 .controller input[type=text],
 .controller input[type=number] {
   font-size: inherit;
+  font-family: inherit;
 }
 
 label {
@@ -134,9 +154,15 @@ input[type=radio] {
   vertical-align: middle;
 }
 
-.edit > *:not(legend):not(.options):not(.url) {
+.edit > * {
   display: inline-block;
   vertical-align: middle;
+}
+
+.edit > .options {
+  background-color: rgba(255,255,255,0.25);
+  padding: 0.5vw 0;
+  margin: 1vw 0;
 }
 
 .hide {

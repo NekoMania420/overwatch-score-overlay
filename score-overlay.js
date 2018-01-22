@@ -25,16 +25,19 @@
   // Hide group
   const hideGroupCheckbox = document.querySelector('#hideGroup')
   hideGroupCheckbox.addEventListener('change', e => {
-    if (e.target.checked) {
-      document.querySelector('#leftTeamGroup').classList.add('hide')
-      document.querySelector('#rightTeamGroup').classList.add('hide')
-    } else {
-      document.querySelector('#leftTeamGroup').classList.remove('hide')
-      document.querySelector('#rightTeamGroup').classList.remove('hide')
-    }
+    document.querySelector('#leftTeamGroup').classList.toggle('hide', e.target.checked)
+    document.querySelector('#rightTeamGroup').classList.toggle('hide', e.target.checked)
 
     document.dispatchEvent(generateEvent)
   }, false)
+
+  // Show center information
+  const showInfoCheckbox = document.querySelector('#showInfo')
+  showInfoCheckbox.addEventListener('change', e => {
+    document.querySelector('#info').classList.toggle('show', e.target.checked)
+
+    document.dispatchEvent(generateEvent)
+  })
 
   // Update
   const editForm = document.querySelector('#edit')
@@ -89,6 +92,8 @@
     let params = new URLSearchParams(location.search)
     params.set('control', Number(document.querySelector('#control').checked))
     params.set('hideGroup', Number(document.querySelector('#hideGroup').checked))
+    params.set('showInfo', Number(document.querySelector('#showInfo').checked))
+    params.set('infoText', document.querySelector('[name="infoText"]').value)
     params.set('leftTeam', JSON.stringify({
       name: document.querySelector('[name="leftTeamName"]').value,
       group: document.querySelector('[name="leftTeamGroup"]').value,
@@ -135,6 +140,12 @@
       if (parseInt(params.get('hideGroup'))) {
         document.querySelector('#hideGroup').click()
       }
+
+      if (parseInt(params.get('showInfo'))) {
+        document.querySelector('#showInfo').click()
+      }
+
+      editForm.infoText.value = params.get('infoText')
 
       if (params.get('leftTeam')) {
         let data = JSON.parse(params.get('leftTeam'))
