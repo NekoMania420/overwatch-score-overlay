@@ -102,7 +102,7 @@ fieldset {
   display: flex;
   align-self: center;
   line-height: 2.5vw;
-  flex-basis: 25%;
+  flex-basis: 28%;
   font-size: 1.5vw;
   visibility: hidden;
 }
