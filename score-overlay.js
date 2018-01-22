@@ -1,6 +1,8 @@
 (() => {
   const changeEvent = new Event('change')
-  const submitEvent = new Event('submit')
+  const submitEvent = new Event('submit', {
+    cancelable: true
+  })
   const generateEvent = new Event('generate')
 
   // Control map
@@ -18,7 +20,7 @@
     })
 
     document.dispatchEvent(generateEvent)
-  })
+  }, false)
 
   // Hide group
   const hideGroupCheckbox = document.querySelector('#hideGroup')
@@ -32,7 +34,7 @@
     }
 
     document.dispatchEvent(generateEvent)
-  })
+  }, false)
 
   // Update
   const editForm = document.querySelector('#edit')
@@ -56,7 +58,7 @@
     }
 
     document.dispatchEvent(generateEvent)
-  })
+  }, false)
 
   // Swap team
   const swapBtn = document.querySelector('#swapBtn')
@@ -80,7 +82,7 @@
     editForm.dispatchEvent(submitEvent)
 
     controlMapCheckbox.dispatchEvent(changeEvent)
-  })
+  }, false)
 
   // Generate URL
   document.addEventListener('generate', e => {
@@ -115,12 +117,12 @@
     copyAlert = setInterval(() => {
       document.querySelector('.url > .alert').classList.remove('show')
     }, 1000)
-  })
+  }, false)
 
   // Reload button
   document.querySelector('#reloadBtn').addEventListener('click', e => {
     window.location.reload()
-  })
+  }, false)
 
   function readData(params) {
     if (location.search) {

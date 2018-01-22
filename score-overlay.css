@@ -23,6 +23,7 @@ fieldset {
 
 .container {
   display: flex;
+  -moz-user-select: none;
   user-select: none;
   position: relative;
 }
@@ -122,6 +123,7 @@ fieldset {
 }
 
 label {
+  -moz-user-select: none;
   user-select: none;
 }
 
